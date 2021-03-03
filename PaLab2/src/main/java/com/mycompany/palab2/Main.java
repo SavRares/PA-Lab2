@@ -6,7 +6,7 @@
 package com.mycompany.palab2;
 
 /**
- * Am instantiat toate clasele pentru problema data, si fiecare lista pentru clasa problema.
+ * Am instantiat toate clasele pentru problema data, si fiecare lista pentru clasa problema. Avem instantiata o clasa solutie pentru solutia problemei
  * @author Rares
  */
 public class Main {
@@ -15,21 +15,35 @@ public class Main {
         
         Problem problem = new Problem();
         
-        Source s1 = new Source();
-        s1.setName("S1");
-        s1.setType(SourceType.FACTORY);
-        Source s2 = new Source("S2", SourceType.WAREHOUSE);
-        Source s3 = new Source("S3", SourceType.WAREHOUSE);
+        Source[] sources = new Source[2];
+        sources[0]= new Warehouse();
+        sources[1]= new Factory();
+        
+        sources[0].setName("S1");
+        sources[1].setName("S2");
+        
+        if(problem.setSources(sources)){
+            System.out.println("E bine!");
+        }
+        else{
+            System.out.println("Un obiect sources a fost adaugat de 2 ori!");
+            return;
+        }
+ 
         
         Destination d1 = new Destination("D1");
         Destination d2 = new Destination("D2");
         Destination d3 = new Destination("D3");
         
-        Source sources[] = {s1, s2, s3};
         Destination destinations[] = {d1, d2, d3};
         
-        problem.setSources(sources);
-        problem.setDestinations(destinations);
+        if(problem.setDestinations(destinations)){
+            System.out.println("Toate destinatiile sunt diferite!");
+        }
+        else{
+            System.out.println("Un obiect destination a fost adaugat de 2 ore!");
+            return;
+        }
         
         int demand[] = {20, 25, 25};
         int supply[] = {10, 35, 25};
@@ -39,7 +53,10 @@ public class Main {
         problem.setSupply(supply);
         problem.setCost(cost);
        
-        System.out.println(problem.toString());
+        
+        Solution solution = new Solution();
+        solution.setX(cost);
+        System.out.println(solution.computeCost(problem));
         
     }
 }

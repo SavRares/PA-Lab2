@@ -27,16 +27,30 @@ public class Problem {
         return sources;
     }
 
-    public void setSources(Source[] sources) {
+    public boolean setSources(Source[] sources) {
+        for(int i = 0; i<sources.length-1;i++){
+            for(int j=i+1; j<sources.length;j++){
+                if(sources[i].equals(sources[j]))
+                    return false;
+            }
+        }
         this.sources = sources;
+        return true;
     }
 
     public Destination[] getDestinations() {
         return destinations;
     }
 
-    public void setDestinations(Destination[] destinations) {
+    public boolean setDestinations(Destination[] destinations) {
+         for(int i = 0; i<destinations.length-1;i++){
+            for(int j=i+1; j<destinations.length;j++){
+                if(destinations[i].equals(destinations[j]))
+                    return false;
+            }
+        }
         this.destinations = destinations;
+        return true;
     }
 
     public int[] getSupply() {

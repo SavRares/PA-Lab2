@@ -5,19 +5,21 @@
  */
 package com.mycompany.palab2;
 
+import java.util.Objects;
+
 
 /**
  *
  * @author Rares
  */
-public class Source {
-    private String name;
-    private SourceType type;
+public abstract class Source {
+    protected String name;
     public Source() { }
-    
-    public Source(String name, SourceType type) {
-     this.name = name;
-     this.type = type;
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
     }
 
     public String getName() {
@@ -28,15 +30,22 @@ public class Source {
         this.name = name;
     }
 
-    public SourceType getType() {
-        return type;
-    }
-
-    public void setType(SourceType type) {
-        this.type = type;
+    
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        final Source other = (Source) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
     }
     
-    public String toString() {
-     return name;
-    }
+    
 }
